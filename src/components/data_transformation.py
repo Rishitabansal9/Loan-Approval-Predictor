@@ -24,18 +24,12 @@ class DataTransformation:
 
     def get_data_transformer_object(self):
         '''
-        This function is responsible for data trnasformation
+        This function is responsible for data transformation
         
         '''
         try:
-            numerical_columns = ["writing_score", "reading_score"]
-            categorical_columns = [
-                "gender",
-                "race_ethnicity",
-                "parental_level_of_education",
-                "lunch",
-                "test_preparation_course",
-            ]
+            numerical_columns = ['Age','Income','Credit History Length','Number of Existing Loans','Loan Amount','Loan Tenure','LTV Ratio','Profile Score']
+            categorical_columns = ['Gender','Existing Customer','State','City','Employment Profile','Occupation']
 
             num_pipeline= Pipeline(
                 steps=[
@@ -85,8 +79,7 @@ class DataTransformation:
 
             preprocessing_obj=self.get_data_transformer_object()
 
-            target_column_name="math_score"
-            numerical_columns = ["writing_score", "reading_score"]
+            target_column_name="Credit Score"
 
             input_feature_train_df=train_df.drop(columns=[target_column_name],axis=1)
             target_feature_train_df=train_df[target_column_name]
@@ -99,8 +92,8 @@ class DataTransformation:
             )
 
             input_feature_train_arr=preprocessing_obj.fit_transform(input_feature_train_df)
-            input_feature_test_arr=preprocessing_obj.transform(input_feature_test_df)
-
+            input_feature_test_arr=preprocessing_obj.fit_transform(input_feature_test_df)
+            
             train_arr = np.c_[
                 input_feature_train_arr, np.array(target_feature_train_df)
             ]
