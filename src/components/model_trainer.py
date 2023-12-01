@@ -29,18 +29,11 @@ class ModelTrainer:
     def __init__(self):
         self.model_trainer_config=ModelTrainerConfig()
 
-    def initiate_model_trainer(self,train_array,test_aray):
+    def initiate_model_trainer(self,X_train,X_test,y_train,y_test):
         logging.info("Entered the Model Training method.")
         try:
-            logging.info('Splitting training & test imput data.')
-            X_train,y_train,X_test,y_test=(
-                train_array[:,:-1],
-                train_array[:,-1],
-                test_aray[:,:-1],
-                test_aray[:,-1]
-            )
             models = {
-                "Random Forest": RandomForestRegressor(),
+        
                 "Decision Tree": DecisionTreeRegressor(),
                 "Gradient Boosting": GradientBoostingRegressor(),
                 "Linear Regression": LinearRegression(),

@@ -92,12 +92,8 @@ class DataTransformation:
             )
 
             input_feature_train_arr=preprocessing_obj.fit_transform(input_feature_train_df)
-            input_feature_test_arr=preprocessing_obj.fit_transform(input_feature_test_df)
-            
-            train_arr = np.c_[
-                input_feature_train_arr, np.array(target_feature_train_df)
-            ]
-            test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
+            input_feature_test_arr=preprocessing_obj.transform(input_feature_test_df)
+            target_feature_train_df=np.array(target_feature_train_df)
 
             logging.info(f"Saved preprocessing object.")
 
@@ -109,8 +105,10 @@ class DataTransformation:
             )
 
             return (
-                train_arr,
-                test_arr,
+                input_feature_train_arr,
+                input_feature_test_arr,
+                target_feature_train_df,
+                target_feature_test_df,
                 self.data_transformation_config.preprocessor_obj_file_path,
             )
         except Exception as e:
