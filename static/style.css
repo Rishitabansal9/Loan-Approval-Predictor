@@ -1,0 +1,154 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1626178793926-22b28830aa30?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Replace with your bank background image */
+    background-size: cover;
+    z-index: -1;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.glass-login {
+    width: 300px;
+    padding: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    margin-left: 780px;
+    margin-top: 100px;
+    overflow: hidden;
+}
+/* Previous CSS styles */
+
+.glass-login label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    width: 100%;
+}
+
+/* Specific style for the occupation label */
+.glass-login #occupation-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    width: 100%;
+}
+
+/* Style for the occupation select dropdown */
+.glass-login select {
+    width: 100%;
+    padding: 8px 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 14px;
+
+    /* Style for dropdown options */
+}
+
+/* Style for occupation dropdown options */
+.glass-login select option {
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: #ffffff; /* Background color */
+    border-color:#4CAF50;
+    color: #333; /* Text color */
+    box-sizing: border-box;
+}
+
+/* Style for occupation dropdown when opened */
+.glass-login select:focus {
+    outline: none;
+    border-color: #ffffff; /* Change border color when focused */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add box shadow when focused */
+    box-sizing: border-box;
+}
+
+.heading{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.column {
+    width: 48%; /* Adjust width as needed */
+    margin-bottom: 4px;
+}
+
+.glass-login label {
+    display: block;
+    margin-bottom: 0px;
+    font-weight: bold;
+    width: 100%; /* Labels take full width */
+    height:20px ;
+    color: #ffffff;
+}
+
+.glass-login input[type="number"],
+.glass-login input[type="submit"],
+.glass-login select {
+    width: 100%;
+    padding: 8px 12px;
+    margin: 3px 0;
+    display: inline-block;
+    border: 2px solid #4CAF50;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.glass-login input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.glass-login input[type="submit"]:hover {
+    background-color: #45a049;
+}
+#predictionResult {
+    margin-top: 2px;
+    display: none; /* Initially hidden */
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+#predictionValue {
+    font-size: 16px;
+    font-weight: bold;
+}

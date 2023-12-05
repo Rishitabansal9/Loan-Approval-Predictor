@@ -1,1 +1,82 @@
-<h1>Welcome to the home page</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="static\style.css">
+</head>
+<body>
+    <div class="background-image"></div>
+    <div class="container">
+        <div class="glass-login">
+            <form id="predictionForm" action="{{ url_for('predict_datapoint')}}" method="post">
+                <div class="heading">
+                    <h2>
+                        LOAN APPROVAL PREDICTION
+                    </h2>
+                </div>
+                <div class="form-row">
+                    <div class="column">
+                        <label for="income">Income:</label><br>
+                        <input type="number" id="income" name="income" required><br>
+
+                        <label for="loanAmount">Loan amount:</label><br>
+                        <input type="number" id="loanAmount" name="loanAmount" required><br>
+                    </div>
+                    <div class="column">
+                        <label for="existingLoans">Number of existing loans:</label><br>
+                        <input type="number" id="existingLoans" name="existingLoans" required><br>
+
+                        <label for="loanTenure">Loan tenure:</label><br>
+                        <input type="number" id="loanTenure" name="loanTenure" required><br>
+                    </div>
+                </div>
+                <label for="occupation">Occupation:</label><br>
+                <select id="occupation" name="occupation" required>
+                    <option value="">--Please choose an option--</option>
+                    <option value="Student">Student</option>
+                    <option value="Banker">Banker</option>
+                    <option value="Business Owner">Business Owner</option>
+                    <option value="Photographer">Photographer</option>
+                    <option value="Writer">Writer</option>
+                    <option value="Doctor">Doctor</option>
+                    <option value="Teacher">Teacher</option>
+                    <option value="Farmer">Farmer</option>
+                    <option value="Graphic Designer">Graphic Designer</option>
+                    <option value="Software Engineer">Software Engineer</option>
+                    <option value="Independent Consultant">Independent Consultant</option>
+                    <option value="Shopkeeper">Shopkeeper</option>
+                    <option value="Contractor">Contractor</option>
+                    <option value="Civil Servant">Civil Servant</option>
+                </select><br>
+                <input type="submit" value="Submit" onclick="showPrediction(); this.disabled = true;">
+            </form>
+            <div id="predictionResult" style="display: none;">
+                <p id="predictionValue"></p>
+            </div>
+        </div>
+    </div>
+   
+
+    <script>
+        function showPrediction() {
+            // Hide the form
+            document.getElementById('predictionForm').style.display = 'none';
+    
+            // Retrieve the prediction result from Flask and convert it to a number
+            var prediction = parseInt("{{ results }}"); // Assuming results is a string representing a number
+    
+            // Check the credit score and update the message
+            var message;
+            if (prediction < 650) {
+                message = "Loan will not be approved due to low credit score: " + prediction;
+            } else {
+                message = "Loan will be approved with credit score: " + prediction;
+            }
+    
+            // Update the prediction result in the HTML
+            document.getElementById('predictionValue').innerText = message;
+            document.getElementById('predictionResult').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
