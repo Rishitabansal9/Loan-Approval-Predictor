@@ -18,7 +18,7 @@ def index():
 @app.route('/', methods=['GET', 'POST'])
 def predict_datapoint():
     if request.method == 'GET':
-        return render_template('index.html')
+        return index
     else:
         data = CustomData(
             income = request.form.get('income'),
@@ -32,6 +32,7 @@ def predict_datapoint():
 
         predict_pipeline = PredictPipeline()
         results = predict_pipeline.predict(pred_df)
+        print(results[0])
         return render_template('index.html', results=results[0])
 
 if __name__=="__main__":

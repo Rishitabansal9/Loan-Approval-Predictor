@@ -1,5 +1,5 @@
 {
     "python.analysis.autoImportCompletions": true,
     "python.analysis.typeCheckingMode": "off",
-    "cmake.configureOnOpen": false
+    // "cmake.configureOnOpen": false
 }
