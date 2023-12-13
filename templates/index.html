@@ -47,10 +47,35 @@
                     <option value="Contractor">Contractor</option>
                     <option value="Civil Servant">Civil Servant</option>
                 </select><br>
-                <input class="btn" type="submit" value="Submit">
+                <input type="submit" value="Submit" onclick="showPrediction()" required>
             </form>
-            <p>{{results}}</p>
+            <div id="predictionResult" style="display: none;">
+                <p id="predictionValue"></p>
+            </div>
         </div>
     </div>
+    <script>
+        function showPrediction() {
+            // Hide the form
+            document.getElementById('predictionForm').style.display = 'none';
+    
+            // Retrieve the prediction result from Flask and convert it to a number
+            var prediction = parseInt("{{ results }}"); // Assuming results is a string representing a number
+
+            console.log("Prediction value:", prediction);
+    
+            // Check the credit score and update the message
+            var message;
+            if (prediction < 650) {
+                message = "Loan will not be approved due to low credit score: " + prediction;
+            } else {
+                message = "Loan will be approved with credit score: " + prediction;
+            }
+    
+            // Update the prediction result in the HTML
+            document.getElementById('predictionValue').innerText = message;
+            document.getElementById('predictionResult').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
