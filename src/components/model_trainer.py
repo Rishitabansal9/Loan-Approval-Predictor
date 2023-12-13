@@ -11,12 +11,10 @@ from src.utils import save_object,evaluate_models
 from catboost import CatBoostRegressor
 from sklearn.ensemble import(
     AdaBoostRegressor,
-    GradientBoostingRegressor,
-    RandomForestRegressor
+    GradientBoostingRegressor
 )
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
-from sklearn.neighbors import KNeighborsRegressor
 from sklearn.tree import DecisionTreeRegressor
 from xgboost import XGBRegressor
 
@@ -33,7 +31,6 @@ class ModelTrainer:
         logging.info("Entered the Model Training method.")
         try:
             models = {
-        
                 "Decision Tree": DecisionTreeRegressor(),
                 "Gradient Boosting": GradientBoostingRegressor(),
                 "Linear Regression": LinearRegression(),

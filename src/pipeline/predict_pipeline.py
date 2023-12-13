@@ -44,7 +44,6 @@ class CustomData:
                 "Loan Amount": [self.loanAmount],
                 "Loan Tenure": [self.loanTenure],
                 "Occupation": [self.occupation]
-                
             }
 
             return pd.DataFrame(custom_data_input_dict)

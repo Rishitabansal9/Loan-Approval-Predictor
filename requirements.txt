@@ -7,4 +7,5 @@ xgboost
 flask
 dill
 numpy
+Gunicorn
 #-e .

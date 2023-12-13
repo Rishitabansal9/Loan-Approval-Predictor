@@ -26,7 +26,7 @@
                         <input type="number" id="existingLoans" name="existingLoans" required><br>
 
                         <label for="loanTenure">Loan tenure:</label><br>
-                        <input type="number" id="loanTenure" name="loanTenure" required><br>
+                        <input type="number" id="loanTenure" placeholder="in months" name="loanTenure" required><br>
                     </div>
                 </div>
                 <label for="occupation">Occupation:</label><br>
@@ -63,6 +63,8 @@
     
             // Retrieve the prediction result from Flask and convert it to a number
             var prediction = parseInt("{{ results }}"); // Assuming results is a string representing a number
+
+            console.log("Prediction value:", prediction);
     
             // Check the credit score and update the message
             var message;
