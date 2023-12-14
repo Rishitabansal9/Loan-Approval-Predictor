@@ -131,3 +131,9 @@ body {
     font-size: 16px;
     font-weight: bold;
 }
+
+.wrapper{
+    text-align: center;
+    padding: 10px;
+    display: none; /* Initially hidden */
+  }

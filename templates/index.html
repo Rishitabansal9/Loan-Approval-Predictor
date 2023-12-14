@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="static\style.css">
-</head>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="static\style.css">
+    </head>
 <body>
     <div class="background-image"></div>
     <div class="container">
@@ -47,35 +47,53 @@
                     <option value="Contractor">Contractor</option>
                     <option value="Civil Servant">Civil Servant</option>
                 </select><br>
-                <input type="submit" value="Submit" onclick="showPrediction()" required>
+                <input type="submit" value="Submit">
             </form>
             <div id="predictionResult" style="display: none;">
                 <p id="predictionValue"></p>
             </div>
         </div>
     </div>
-    <script>
-        function showPrediction() {
-            // Hide the form
-            document.getElementById('predictionForm').style.display = 'none';
-    
-            // Retrieve the prediction result from Flask and convert it to a number
-            var prediction = parseInt("{{ results }}"); // Assuming results is a string representing a number
 
-            console.log("Prediction value:", prediction);
-    
-            // Check the credit score and update the message
+    <script>
+        // Function to update prediction result
+        function updatePrediction(result) {
+            document.getElementById('predictionForm').style.display = 'none';
             var message;
-            if (prediction < 650) {
-                message = "Loan will not be approved due to low credit score: " + prediction;
+            if (result < 650) {
+                message = "Loan will not be approved due to low credit score: " + result;
             } else {
-                message = "Loan will be approved with credit score: " + prediction;
+                message = "Loan will be approved with credit score: " + result;
             }
-    
+
             // Update the prediction result in the HTML
             document.getElementById('predictionValue').innerText = message;
             document.getElementById('predictionResult').style.display = 'block';
+            
+            setTimeout(function() {
+                location.reload();
+            }, 5000);
         }
+
+        // Add an event listener to the form for submission
+        document.getElementById('predictionForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent the default form submission behavior
+
+            // Retrieve the form data
+            var formData = new FormData(this);
+
+            // Send an asynchronous POST request to the server
+            fetch("{{ url_for('predict_datapoint')}}", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update the prediction result dynamically
+                updatePrediction(data.prediction_result);
+            })
+            .catch(error => console.error('Error:', error));
+        });
     </script>
 </body>
 </html>
